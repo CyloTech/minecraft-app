@@ -3,7 +3,7 @@ FROM        java:latest
 ENV         ADMIN_PASS=Letmein123
 ENV         JAVA_MEMORY=2048
 
-EXPOSE		8080
+EXPOSE		80
 EXPOSE		25565
 EXPOSE      8123
 
@@ -11,7 +11,7 @@ RUN	        rm -rf /var/lib/apt/lists/* && \
             apt-get clean && \
             apt-get update && \
 			DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
-			apt-get -y install vim wget curl netcat
+			apt-get -y install vim wget curl netcat net-tools
 
 WORKDIR		/usr/local
 RUN			wget http://mcmyadmin.com/Downloads/etc.zip && \

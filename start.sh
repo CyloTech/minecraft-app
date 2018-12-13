@@ -14,9 +14,15 @@ if [ ! -f /etc/mc_installed ]; then
     # This is the first run, so set the admin PW and start it up for the first time.
     ./MCMA2_Linux_x86_64 -setpass "$ADMIN_PASS" +java.memory $JAVA_MEMORY &
     sleep 10;
-    while ! echo exit | nc localhost 8080; do sleep 10; done
+
+    while ! nc -z localhost 80; do
+      echo "Sleeping for 1 second whilst we wait for it to come online"
+      sleep 1
+    done
+
     pkill -9 MCMA2
 
+    echo "***************************************************************************"
 fi
 
 cd /home/minecraft
