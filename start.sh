@@ -9,9 +9,6 @@ if [ ! -f /etc/mc_installed ]; then
 
     ./MCMA2_Linux_x86_64 -nonotice -updateonly
 
-    touch /etc/mc_installed
-    curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST "https://api.cylo.io/v1/apps/installed/$INSTANCE_ID"
-
     # This is the first run, so set the admin PW and start it up for the first time.
     ./MCMA2_Linux_x86_64 -setpass "$ADMIN_PASS" +java.memory $JAVA_MEMORY &
     sleep 10;
@@ -25,6 +22,8 @@ if [ ! -f /etc/mc_installed ]; then
 
     chown -R minecraft:minecraft /home/minecraft
 
+    touch /etc/mc_installed
+    curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST "https://api.cylo.io/v1/apps/installed/$INSTANCE_ID"
     echo "***************************************************************************"
 fi
 
