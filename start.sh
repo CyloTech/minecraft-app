@@ -15,6 +15,8 @@ if [ ! -f /etc/mc_installed ]; then
     ./MCMA2_Linux_x86_64 -setpass "$ADMIN_PASS" +java.memory $JAVA_MEMORY &
     sleep 10;
     while ! echo exit | nc localhost 8080; do sleep 10; done
+    pkill -9 MCMA2
+
 fi
 
 cd /home/minecraft
