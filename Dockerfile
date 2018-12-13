@@ -27,4 +27,6 @@ ADD         McMyAdmin.conf /home/mcmyadmin/McMyAdmin.conf
 ADD         start.sh /start.sh
 RUN         chmod 755 /start.sh
 
+RUN adduser --system --disabled-password --home /home/minecraft --shell /sbin/nologin --group --uid 1000 minecraft
+
 CMD         ["/start.sh"]

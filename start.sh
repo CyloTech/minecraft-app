@@ -5,6 +5,9 @@ if [ ! -f /etc/mc_installed ]; then
     mkdir /home/minecraft
     mv /home/mcmyadmin/* /home/minecraft/
 
+    chown -R minecraft:minecraft /home/minecraft
+    setcap cap_net_bind_service=+ep /home/minecraft/MCMA2_Linux_x86_64
+
     cd /home/minecraft
     ./MCMA2_Linux_x86_64 -nonotice -updateonly
 
@@ -12,7 +15,7 @@ if [ ! -f /etc/mc_installed ]; then
     curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST "https://api.cylo.io/v1/apps/installed/$INSTANCE_ID"
 
     # This is the first run, so set the admin PW and start it up for the first time.
-    ./MCMA2_Linux_x86_64 -setpass "$ADMIN_PASS" +java.memory $JAVA_MEMORY &
+    exec su -c "./MCMA2_Linux_x86_64 -setpass "$ADMIN_PASS" +java.memory $JAVA_MEMORY" -s /bin/sh minecraft &
     sleep 10;
 
     while ! nc -z localhost 80; do
@@ -26,4 +29,4 @@ if [ ! -f /etc/mc_installed ]; then
 fi
 
 cd /home/minecraft
-./MCMA2_Linux_x86_64 +java.memory $JAVA_MEMORY
+exec su -c "./MCMA2_Linux_x86_64 +java.memory $JAVA_MEMORY" -s /bin/sh minecraft &
