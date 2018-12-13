@@ -30,3 +30,5 @@ fi
 
 cd /home/minecraft
 exec su -c "./MCMA2_Linux_x86_64 +java.memory $JAVA_MEMORY" -s /bin/sh minecraft &
+
+tail -f /home/minecraft/MCMA_Logs/*.log
