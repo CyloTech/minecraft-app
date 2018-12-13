@@ -6,9 +6,10 @@ if [ ! -f /etc/mc_installed ]; then
     mv /home/mcmyadmin/* /home/minecraft/
 
     chown -R minecraft:minecraft /home/minecraft
-    setcap cap_net_bind_service=+ep /home/minecraft/MCMA2_Linux_x86_64
 
     cd /home/minecraft
+    setcap cap_net_bind_service=+ep /home/minecraft/MCMA2_Linux_x86_64
+
     ./MCMA2_Linux_x86_64 -nonotice -updateonly
 
     touch /etc/mc_installed
@@ -27,6 +28,8 @@ if [ ! -f /etc/mc_installed ]; then
 
     echo "***************************************************************************"
 fi
+
+setcap cap_net_bind_service=+ep /home/minecraft/MCMA2_Linux_x86_64
 
 cd /home/minecraft
 exec su -c "./MCMA2_Linux_x86_64 +java.memory $JAVA_MEMORY" -s /bin/sh minecraft &
