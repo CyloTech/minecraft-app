@@ -11,7 +11,7 @@ RUN	        rm -rf /var/lib/apt/lists/* && \
             apt-get clean && \
             apt-get update && \
 			DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
-			apt-get -y install vim wget curl
+			apt-get -y install vim wget curl netcat
 
 WORKDIR		/usr/local
 RUN			wget http://mcmyadmin.com/Downloads/etc.zip && \
