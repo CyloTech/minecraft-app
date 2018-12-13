@@ -29,6 +29,4 @@ RUN         chmod 755 /start.sh
 
 RUN setcap cap_net_bind_service=+ep /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
-RUN adduser --system --disabled-password --home /home/minecraft --shell /sbin/nologin --group --uid 1000 minecraft
-
 CMD         ["/start.sh"]

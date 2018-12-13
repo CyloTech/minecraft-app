@@ -2,6 +2,7 @@
 set -x
 
 if [ ! -f /etc/mc_installed ]; then
+    adduser --system --disabled-password --home /home/minecraft --shell /sbin/nologin --group --uid 1000 minecraft
     mkdir /home/minecraft
     mv /home/mcmyadmin/* /home/minecraft/
     cd /home/minecraft
